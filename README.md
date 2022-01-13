@@ -25,6 +25,10 @@ Este proyecto de backend fue solicitado por personal del sector desarrollo de "L
 
 El proyecto esta desarrollado con NodeJS, Express y TypeScript
 
+## Endpoints
+localhost:8080/api/accounts/tourism
+localhost:8080/api/accounts/active-flag
+
 ### Desarrollador
 
 Nicolás Bertini Argañaras
