@@ -6,13 +6,11 @@ export interface Accounts {
   tags: Array<Tags>;
   images: Array<Images>;
   location?: string;
-  /* [x: string]: any; */
 }
 
 export interface Branches {
   location: number; //Luego transformar en mtrs o kg
   crmid: string;
-  /* [x: string]: any; */
 }
 
 export interface Benefits {
@@ -22,7 +20,7 @@ export interface Benefits {
 }
 
 export interface Tags {
-  name: string; //Debe decir "Turismo en Buenos Aires" para el 1er endpoint
+  name: string;
   id_web: string;
   type_id: string;
   type: string;
