@@ -41,10 +41,11 @@ const filterTourismBA = (accounts: Array<Accounts>) => {
   //Ordernar los branches por location
   result.forEach((account: Accounts) => {
     account.branches = orderBranches(account.branches);
-    if (account.branches[0].location / 1000 < 1) {
-      account.location = `${account.branches[0].location} mtrs` || "";
+    const location = account.branches[0].location;
+    if (location / 1000 < 1) {
+      account.location = `${location} mtrs` || "";
     } else {
-      account.location = `${account.branches[0].location / 1000} km` || "";
+      account.location = `${location / 1000} km` || "";
     }
   });
   //Ordenar account por branch.location
@@ -76,7 +77,7 @@ const orderAccounts = (accounts: Array<Accounts>) => {
 const activeFlag = (accounts: Array<AccountFlag>) => {
   let result: Array<AccountFlag> = [];
   accounts.forEach((account) => {
-    if (account.haveVoucher) {
+    if (account.haveVoucher === true) {
       result.push(account);
     }
   });
@@ -89,19 +90,24 @@ const alphabeticalOrder = (accounts: Array<AccountFlag>) => {
 
   return accounts;
 };
+const filterAccountActiveFlag = (accounts: Array<AccountFlag>) => {
+  let result = activeFlag(accounts);
+  result.splice(4);
+  result = alphabeticalOrder(result);
+  return result;
+};
+
+
 export const getAccountsTurism = (req: Request, res: Response) => {
   const list = getAccountList();
   let result = filterTourismBA(list);
   res.json(result);
 };
 
+
+
 export const getAccountsActiveFlag = (req: Request, res: Response) => {
   const list = getAccountList();
-  //haveVoucher = true
-  let result = activeFlag(list);
-  // Devolver los primeros 4 elementos
-  result.splice(4); //unicamente las 4 primeras
-  // Ordenamiento cards por nombre alfabetico de manera descendente
-  result = alphabeticalOrder(result);
+  let result = filterAccountActiveFlag(list);
   res.json(result);
 };

@@ -15,8 +15,6 @@ export interface Branches {
 
 export interface Benefits {
   type: string;
-  /* images: Array<Images>;
-  [x: string]: any; */
 }
 
 export interface Tags {
