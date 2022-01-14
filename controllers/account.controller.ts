@@ -39,11 +39,15 @@ const filterTourismBA = (accounts: Array<Accounts>) => {
   result.forEach((account: Accounts) => {
     account.branches = orderBranches(account.branches);
     const location = account.branches[0].location;
-    if (location / 1000 < 1) {
-      account.location = `${location} mtrs` || "";
+    const locationKm = location / 1000;
+    let valueL= "";
+    if (locationKm < 1) {
+      valueL = `${location} mtrs`;
+      
     } else {
-      account.location = `${location / 1000} km` || "";
+      valueL = `${locationKm} km`;
     }
+    account.location = valueL;
   });
   //Ordenar account por branch.location
   result = orderAccounts(accounts);
