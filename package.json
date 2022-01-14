@@ -4,11 +4,14 @@
   "description": "Backend para el proyecto de Club La Nacion - Nicolas Bertini",
   "main": "dist/app.js",
   "scripts": {
-    "build": "NODE_ENV=production tsc",
-    "start": "node dist/app.js",
-    "postinstall": "tsc",
-    "watch-ts": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-ts": "tsc",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "postinstall": "npm run build-ts",
+    "start": "npm run serve",
+    "serve": "node dist/app.js",
+    "test": "jest src",
+    "watch-node": "nodemon dist/app.js",
+    "watch-ts": "tsc -w"
   },
   "repository": {
     "type": "git",
