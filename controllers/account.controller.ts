@@ -1,8 +1,16 @@
 import { Request, Response } from "express";
 import { AccountFlag, Accounts, Branches, Tags } from "../interface/interfaces";
+const fs = require("fs");
 
 let accountsList: Array<any>;
 const tagName = "Turismo en Buenos Aires";
+let pathJSON = "./db/accounts.json";
+
+if (fs.existsSync(pathJSON)) {
+  pathJSON = "../db/accounts.json";
+} else {
+  pathJSON = "./accounts.json";
+}
 
 interface ObjectJSON {
   accounts: Array<Accounts>;
@@ -10,7 +18,7 @@ interface ObjectJSON {
 
 const loadDB = () => {
   try {
-    const objectJSON: ObjectJSON = require("./accounts.json");
+    const objectJSON: ObjectJSON = require(pathJSON);
     accountsList = objectJSON.accounts;
   } catch (error) {
     accountsList = [];

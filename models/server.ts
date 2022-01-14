@@ -17,7 +17,7 @@ class Server {
     this.routes();
   }
 
-  //Seria innecesario porque no estamos trabajando con validaciones de parametros o body
+  //Seria innecesario si debo recibir location como parametro
   middlewares() {
     this.app.use(cors());
     this.app.use(express.json());
@@ -30,7 +30,7 @@ class Server {
 
   listen() {
     this.app.listen(this.port, () => {
-      console.log("Servidor corriendo en puerto" + this.port);
+      console.log("Servidor corriendo en puerto => " + this.port);
     });
   }
 }
