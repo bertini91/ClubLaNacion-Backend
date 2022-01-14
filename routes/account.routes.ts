@@ -1,8 +1,6 @@
 import { Router } from "express";
-import {
-  getAccountsActiveFlag,
-  getAccountsTurism,
-} from "../controllers/account.controller";
+import { getAccountsTurism } from "../controllers/account.controller";
+import { getAccountsActiveFlag } from "../controllers/acoountFlag.controller";
 
 const accountRoutes = Router();
 

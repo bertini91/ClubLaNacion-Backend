@@ -21,15 +21,12 @@ const loadDB = () => {
     const objectJSON: ObjectJSON = require(pathJSON);
     accountsList = objectJSON.accounts;
   } catch (error) {
-    accountsList = [];
     console.log("Error en la lectura del JSON ", error);
   }
 };
+loadDB();
 
-const getAccountList = () => {
-  loadDB();
-  return accountsList;
-};
+
 const filterTourismBA = (accounts: Array<Accounts>) => {
   let result: Array<Accounts> = [];
   accounts.forEach((account) => {
@@ -74,40 +71,12 @@ const orderAccounts = (accounts: Array<Accounts>) => {
   return accounts;
 };
 
-const activeFlag = (accounts: Array<AccountFlag>) => {
-  let result: Array<AccountFlag> = [];
-  accounts.forEach((account) => {
-    if (account.haveVoucher === true) {
-      result.push(account);
-    }
-  });
-
-  return result;
-};
-
-const alphabeticalOrder = (accounts: Array<AccountFlag>) => {
-  accounts.sort((a, b) => a.name.localeCompare(b.name));
-
-  return accounts;
-};
-const filterAccountActiveFlag = (accounts: Array<AccountFlag>) => {
-  let result = activeFlag(accounts);
-  result.splice(4);
-  result = alphabeticalOrder(result);
-  return result;
-};
 
 
 export const getAccountsTurism = (req: Request, res: Response) => {
-  const list = getAccountList();
-  let result = filterTourismBA(list);
+  const list = accountsList;
+  const result = filterTourismBA(list);
   res.json(result);
 };
 
 
-
-export const getAccountsActiveFlag = (req: Request, res: Response) => {
-  const list = getAccountList();
-  let result = filterAccountActiveFlag(list);
-  res.json(result);
-};
