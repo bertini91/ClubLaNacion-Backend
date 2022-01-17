@@ -1,6 +1,6 @@
 # Club La Nación
 
-<p align="center"><a href="https://club-la-nacion-bertini.netlify.app/" target="_blank" ><img width="150" height="110"src="./public/iconClubLN.png" alt="logo" style="max-width: 100%;background-color: #008dff;border-radius: 10px;padding: 5px;"></a></p>
+<p align="center"><a href="https://club-la-nacion-bertini.netlify.app/" target="_blank" ><img width="220" height="180"src="./public/iconClubLN.jpg" alt="logo" style="max-width: 100%;background-color: #008dff;border-radius: 10px;padding: 5px;"></a></p>
 
 ## Iniciar Proyecto
 
