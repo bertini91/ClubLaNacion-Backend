@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { AccountFlag, Accounts } from "../interface/interfaces";
+import { AccountFlagModel } from '../models/accountFlag.models';
 const fs = require("fs");
 
 let accountsList: Array<any>;
@@ -24,18 +25,21 @@ const loadDB = () => {
   }
 };
 loadDB();
+
 const activeFlag = (accounts: Array<AccountFlag>) => {
-  let result: Array<AccountFlag> = [];
+  let result: Array<AccountFlagModel> = [];
   accounts.forEach((account) => {
     if (account.haveVoucher === true) {
-      result.push(account);
+      const obj = new AccountFlagModel(account.name, account.crmid, account.images);
+
+      result.push(obj);
     }
   });
 
   return result;
 };
 
-const alphabeticalOrder = (accounts: Array<AccountFlag>) => {
+const alphabeticalOrder = (accounts: Array<AccountFlagModel>) => {
   accounts.sort((a, b) => a.name.localeCompare(b.name));
 
   return accounts;
